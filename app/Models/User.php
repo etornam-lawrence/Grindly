@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the plans for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Plan>
+     */
+    public function plans()
+    {
+        return $this->hasMany(Plan::class);
+    }
 }
