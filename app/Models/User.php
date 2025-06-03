@@ -55,4 +55,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Plan::class);
     }
+
+    /**
+     * Get the study sessions for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\StudySession>
+     */
+    public function sessions()
+    {
+        return $this->hasMany(StudySession::class);
+    }
+
 }

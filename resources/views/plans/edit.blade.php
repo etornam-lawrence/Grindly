@@ -1,1 +1,3 @@
-You'll edit your file here
+<x-app-layout>
+    
+</x-app-layout>

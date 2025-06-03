@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white sticky fixed top-0 w-full z-50 border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('plans.index')" :active="request()->routeIs('plans.index')">
                         {{ __('Plans') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('sessions')">
+                    <x-nav-link :href="route('sessions.index')" :active="request()->routeIs('sessions.index')">
                         {{ __('Sessions') }}
                     </x-nav-link>
                 </div>
