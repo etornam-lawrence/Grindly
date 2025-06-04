@@ -27,5 +27,11 @@
            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded transition-colors duration-150">
             More
         </a>
+        <form method="POST" action= "{{ route('sessions.start', $session->id) }}" class="ml-2">
+            @csrf
+            <x-primary-button type="submit" class="ml-2">
+                Start Session
+            </x-primary-button>
+        </form>
     </div>
 </div>

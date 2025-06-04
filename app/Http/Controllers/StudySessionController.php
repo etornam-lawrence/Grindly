@@ -22,6 +22,7 @@ class StudySessionController extends Controller
         return view('sessions.create');
     }
 
+    
 
     public function store(Request $request)
     {
@@ -32,6 +33,7 @@ class StudySessionController extends Controller
             'topic' => 'required|string|max:255',
             'date' => 'date|required',
             'start_time' => 'required',
+            'notes' => 'nullable|string|max:5000',
             'duration' => 'integer|required|min:5',
         ]);
 
@@ -41,44 +43,60 @@ class StudySessionController extends Controller
         // Calculate end_time
         $validatedData['end_time'] = $startDateTime->copy()->addMinutes((int)$validatedData['duration']);
         $validatedData['start_time'] = $startDateTime;
-        $validatedData['status'] = 'not-started';
-        $validatedData['notes'] = 'No notes given';
+        $validatedData['status'] = 'Not started';
 
         $insert = $user->sessions()->create($validatedData);
 
-        if (!$insert) {
+        if (!$insert && StudySession::inSession($user)) {
             return redirect()->back()->with('error', 'Failed to create study session.');
         }
 
         return redirect()->route('sessions.index')->with('success', 'Study session created successfully.');
     }
 
-
-
     public function show(StudySession $session)
     {
         return view('sessions.show', compact('session'));
     }
 
+
     public function start(StudySession $session)
     {
         // Logic to start a study session
-        $session->status = 'started';
+        $session->status = 'Ongoing';
+        $duration = $session->duration;
         $session->save();
 
-        return redirect()->route('sessions.index')->with('success', 'Study session started successfully.');
+        return view('sessions.focus', compact('session', 'duration'));
+
+    }
+
+    public function pause(StudySession $session)
+    {
+        // Logic to pause a study session
+        $session->status = 'Paused';
+        $session->save();
+
+        return redirect()->route('sessions.index')->with('success', 'Study session paused successfully.');
+    }
+
+    public function cancel(StudySession $session)
+    {
+        $session->status = 'Not Started';
+        $session->save();
+        return redirect()->route('sessions.index', compact('session'))->with('success', 'You have canceled this session!');
     }
 
     public function complete(StudySession $session)
     {
         // Logic to mark a study session as completed
-        $session->status = 'completed';
+        $session->status = 'Completed';
         $session->save();
 
         return redirect()->route('sessions.index')->with('success', 'Study session completed successfully.');
     }
 
-
+    
 
 
 
@@ -106,7 +124,7 @@ class StudySessionController extends Controller
             return redirect()->back()->with('error', 'Failed to create study session.');
         }
 
-        return redirect()->route('sessions.index', compact('session'))->with('success', 'Study session updated successfully.');
+        return redirect()->route('sessions.show', compact('session'))->with('success', 'Study session updated successfully.');
     }
 
     public function destroy(StudySession $session)

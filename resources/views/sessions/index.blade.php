@@ -14,6 +14,8 @@
                 {{ __('Here you can manage your study sessions, goals, and achievements.') }}   
             </p>
 
+            <div>Level logic</div>
+            <div>Study goal proficiency goes here</div>
         </div>
     </x-slot>
 
@@ -47,9 +49,19 @@
                         <x-input-error class="mt-2" :messages="$errors->get('start_time')" />
                     </div>
                     <div>
+                        <x-select name="duration">
+                            <option value="" disabled selected>{{ __('Select duration') }}</option>
+                            @foreach([5, 10, 15, 20, 30, 45, 60] as $duration)
+                                <option value="{{ $duration }}">{{ $duration }} {{ __('minutes') }}</option>
+                            @endforeach
+                            <option value="120">2 hours</option>
+                        </x-select>
                         <x-input-label for="duration" :value="__('Duration (minutes)')" />
-                        <x-text-input id="duration" name="duration" type="number" min="5" class="mt-1 block w-full" required />
+                        {{-- <x-text-input id="duration" name="duration" type="number" min="5" class="mt-1 block w-full" required /> --}}
                         <x-input-error class="mt-2" :messages="$errors->get('duration')" />
+                    </div>
+                    <div>
+                        <x-textarea name="notes" rows="5" placeholder="Notes here..." ></x-textarea>
                     </div>
                 </div>
                 <div class="mt-6 flex justify-end gap-2">
@@ -78,15 +90,6 @@
                             @endforeach
                         </div>
                     @endif
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("Your study sessions") }}
                 </div>
             </div>
         </div>

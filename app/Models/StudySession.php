@@ -41,4 +41,10 @@ class StudySession extends Model
     {
         return $query->where('status', 'completed');
     }
+
+    public function inSession(User $user)
+    {
+        $user->sessions()->where('status', 'ongoing');
+        
+    }
 }
