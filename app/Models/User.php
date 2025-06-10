@@ -46,6 +46,7 @@ class User extends Authenticatable
         ];
     }
 
+
     /**
      * Get the plans for the user.
      *

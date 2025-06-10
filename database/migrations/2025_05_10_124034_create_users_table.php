@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('xp_level_id')->constrained('xp_levels')->onDelete('cascade'); // Current level
             $table->string('name');
             $table->string('email')->unique();
+            $table->integer('current_xp')->default(0); // Total XP accumulated
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

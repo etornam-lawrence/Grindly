@@ -2,22 +2,24 @@
 
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\StudySessionController;
+use App\Http\Controllers\XPLevelController;
 use Illuminate\Support\Facades\Route;
 
 //Plans
 Route::middleware('auth')->group(function (){
-    Route::resource('plans', PlanController::class)->except(['show', 'destroy']);
+    Route::resource('plans', PlanController::class)->except(['show', 'destroy', 'edit']);
+    Route::get('/plans/{plan}/new', [PlanController::class, 'edit'])->name('plans.edit');
     Route::resource('sessions', StudySessionController::class)->except(['destroy']);
 
     Route::post('/sessions/start/{session}', [StudySessionController::class, 'start'])->name('sessions.start');
     Route::post('sessions/{session}/complete', [StudySessionController::class, 'complete'])->name('sessions.complete');
     Route::post('/sessions/{pause}/pause', [StudySessionController::class, 'pause'])->name('sessions.pause');
     Route::post('/sessions/{session}/cancel', [StudySessionController::class, 'cancel'])->name('sessions.cancel');
+ 
+});
 
-
-
-
-    
+Route::middleware('auth', 'admin')->group(function (){
+    Route::get('/admin/levels/', [XPLevelController::class, 'index'])->name('xp_levels.index');
 });
 
 //Study sessions
