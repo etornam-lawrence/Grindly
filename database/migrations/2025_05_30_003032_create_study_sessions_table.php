@@ -11,23 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // INCREASE STUDY TIME ON COMPLETING A SESSION
         Schema::create('study_sessions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('course_name');
-            $table->string('topic');
-            $table->date('date');
 
-            $table->time('start_time');
-            $table->time('end_time')->nullable()->default(null); // Nullable end time, can be set later
-            $table->integer('duration')->nullable(); // Duration in minutes, can be calculated later
-            $table->text('notes')->nullable()->default('No notes'); 
+            $table->string('title');
+            // $table->enum('status', ['Active', 'Paused', 'Completed', 'Aborted'])->default('Active')->index(); //taking you out
+            $table->integer('study_duration')->default(0);  // Minutes completed for multiple sessions
+            $table->dateTime('start_time')->nullable();    //backend time tracking
+            $table->dateTime('end_time')->nullable();
+            $table->text('notes')->nullable()->default('No notes');
 
-            $table->integer('total_study_time')->nullable()->default(0); // Total study time in minutes, can be updated later
-            $table->integer('my_study_goal')->default();
-            $table->enum('status',['Not Started','Ongoing','Paused','Canceled','Completed'])->default('Not Started'); // Status can be 'ongoing', 'completed', or 'cancelled' 
             $table->timestamps();
+            $table->softDeletes(); // optional: allows recovery of deleted sessions
         });
     }
 

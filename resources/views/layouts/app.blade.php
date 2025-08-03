@@ -36,5 +36,15 @@
                 {{ $slot }}
             </main>
         </div>
+        <footer class="footer-bg py-10 px-4 text-center text-muted">
+            <div class="container mx-auto">
+                <p class="mb-4">&copy; 2025 GrindlY. All rights reserved.</p>
+                <div class="flex justify-center space-x-8">
+                    <a href="#" class="footer-link hover:underline">About</a>
+                    <a href="#" class="footer-link hover:underline">Contact</a>
+                    <a href="#" class="footer-link hover:underline">Terms</a>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>

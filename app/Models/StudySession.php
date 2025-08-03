@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Http\Requests\SessionFormRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class StudySession extends Model
 {
@@ -12,19 +14,16 @@ class StudySession extends Model
 
     protected $fillable = [
         'user_id',
-        'course_name',
-        'topic',
-        'date',
+        'title',
+        'study_duration',
         'start_time',
         'end_time',
-        'duration',
-        'notes',
         'status',
+        'notes'
     ];
     protected $casts = [
-        'date' => 'date',
-        'time' => 'time',
-        'duration' => 'integer',
+        'start_time' => 'datetime',
+        'end_time' => 'datetime'
     ];
     
     public function user()
@@ -32,19 +31,41 @@ class StudySession extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function scopeOngoing($query)
+    public function notes()
     {
-        return $query->where('status', 'started');
+        return $this->hasMany(Notes::class);
+    }
+    
+
+    /**
+     * Apply session data from the validated request.
+     *
+     * @param array $validated
+     * @return array
+     */
+    public static function applySessionData(array $validated): array
+    {
+        return array_merge($validated, [
+            'title' => $validated['title'] ?? null,
+            'start_time' => $validated['start_time'] ?? now(),
+            'end_time' => $validated['end_time'] ?? now()->addMinutes(25),
+            'study_duration' => $validated['study_duration'] ?? 25, 
+            'notes' => $validated['notes'] ?? 'No notes given',
+            'user_id' => Auth::id(), 
+        ]);
     }
 
-    public function scopeCompleted($query)
+    public function progressionlvl(int $xp): int
     {
-        return $query->where('status', 'completed');
+        return $this->user->current_xp += $xp;
     }
 
-    public function inSession(User $user)
+    public static function calculateXPForSession($sessionDuration)
     {
-        $user->sessions()->where('status', 'ongoing');
-        
+        //for every 5 minutes, you get 2xp
+        for( $i = 1; $i <= $sessionDuration; $i += 25) {
+            $xp[] = 10;
+        }
+        return array_sum($xp);
     }
 }

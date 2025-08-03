@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('xp_levels', function (Blueprint $table) {
+        Schema::create('activity_logs', function (Blueprint $table) {
             $table->id();
-            $table->integer('level')->default(1);
-            $table->string('level_name')->unique();
-            $table->integer('xp_needed')->default(100); // XP needed to reach this level
-            $table->integer('xp_reward')->default(10); // XP rewarded for completing this level
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('activity_type');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('xp_levels');
+        Schema::dropIfExists('activity_logs');
     }
 };
