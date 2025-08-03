@@ -86,9 +86,6 @@
         
         {{-- search-bar --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <input type="text" id="searchBar" placeholder="Search by course, topic, or date..."
-            class="mt-4 block w-full sm:w-1/2 lg:w-1/3 rounded-xl border border-gray-300 focus:border-yellow-500 focus:ring-yellow-500 px-4 py-2 text-sm"
-            onkeyup="filterSessions()">
     </div>
     {{-- page body --}}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8 px-4 sm:px-6 lg:px-8">
@@ -168,10 +165,13 @@
                         <span class="text-xs text-gray-500 mt-1">Reset</span>
                     </div>
                 </div>
-            </div>
+                <p class="text-sm text-gray-500 italic text-center mt-5">
+                    Note: The timer will automatically save your session when it ends.
+                </p>
+            </div> 
         </div>
-
-                {{-- 🗂️ Study Chart Placeholder --}}
+                
+        {{-- 🗂️ Study Chart Placeholder --}}
         <div class="col-span-1 flex flex-col">
             <div class="flex-1 bg-white rounded-3xl p-2 border border-gray-200 shadow-xl flex flex-col justify-between">
                 <h3 class="text-gray-900 text-lg font-semibold m-auto">Consistentcy based Study Chart📈</h3>
@@ -228,11 +228,7 @@
         </div>
         
     </div>
-    <div class="mt-8 px-4 sm:px-6 lg:px-8">
-        <p class="text-sm text-gray-500">
-            Note: The timer will automatically save your session when it ends.
-        </p>
-    </div>
+
 
     <script>
         // Current time display
