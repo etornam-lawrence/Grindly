@@ -26,7 +26,7 @@
                     <h3 class="text-lg font-semibold text-neutral-800">Current Streak</h3>
                     <p class="mt-2 text-4xl font-bold text-orange-500">🔥 {{ $user->current_streak }} days</p>
                     <p class="mt-1 text-sm text-gray-500">Keep the momentum going!</p>
-                    <p class="mt-1 text-sm text-gray-500">Last visit: {{$user->last_login_date}}</p>
+                    <p class="mt-1 text-sm text-gray-500">Last visit: {{$user->last_login_date ? $user->last_login_date->diffForHumans() : 'Today'}}</p>
                 </div>
 
                 <div class="bg-white p-6 rounded-2xl shadow">
@@ -44,35 +44,8 @@
                 </div>
             </div>
 
-            <!-- Profitable Learning Resources -->
-            <div class="bg-white p-6 rounded-2xl shadow">
-                <h3 class="text-lg font-semibold text-neutral-800 mb-4">💡 Profitable Learning Resources</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    @php
-                        $resources = [
-                            ['title' => 'Effective Study Techniques', 'desc' => 'Master proven methods to boost retention and ace exams.', 'url' => 'https://www.coursera.org/learn/learning-how-to-learn', 'platform' => 'Coursera'],
-                            ['title' => 'Time Management for Students', 'desc' => 'Learn to prioritize, plan, and manage your college workload.', 'url' => 'https://www.edx.org/course/time-management', 'platform' => 'edX'],
-                            ['title' => 'Public Speaking Essentials', 'desc' => 'Develop confidence and skills for presentations and speeches.', 'url' => 'https://www.udemy.com/course/public-speaking/', 'platform' => 'Udemy'],
-                            ['title' => 'Critical Thinking & Problem Solving', 'desc' => 'Sharpen your reasoning and analytical skills for any subject.', 'url' => 'https://www.futurelearn.com/courses/logical-and-critical-thinking', 'platform' => 'FutureLearn'],
-                            ['title' => 'Personal Finance 101', 'desc' => 'Understand budgeting, saving, and managing your money in college.', 'url' => 'https://www.khanacademy.org/college-careers-more/personal-finance', 'platform' => 'Khan Academy'],
-                            ['title' => 'Career Planning & Development', 'desc' => 'Explore career options and prepare for the job market.', 'url' => 'https://www.coursera.org/learn/career-success', 'platform' => 'Coursera'],
-                        ];
-                    @endphp
-
-                    @foreach ($resources as $res)
-                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                            <div class="flex justify-between text-sm font-medium text-gray-700">
-                                <span>{{ $res['title'] }}</span>
-                                <a href="{{ $res['url'] }}" target="_blank" class="text-indigo-600 hover:underline">{{ $res['platform'] }}</a>
-                            </div>
-                            <p class="text-xs text-gray-500 mt-1">{{ $res['desc'] }}</p>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-
             <!-- Video Learning -->
-            <div class="bg-white p-6 rounded-2xl shadow">
+            {{-- <div class="bg-white p-6 rounded-2xl shadow">
                 <h3 class="text-lg font-semibold text-neutral-800 mb-4">🎥 Learn Vast Topics</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     @php
@@ -95,7 +68,7 @@
                         </div>
                     @endforeach
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>

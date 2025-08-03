@@ -36,13 +36,13 @@
                 {{ $slot }}
             </main>
         </div>
-        <footer class="footer-bg py-10 px-4 text-center text-muted">
-            <div class="container mx-auto">
-                <p class="mb-4">&copy; 2025 GrindlY. All rights reserved.</p>
-                <div class="flex justify-center space-x-8">
-                    <a href="#" class="footer-link hover:underline">About</a>
-                    <a href="#" class="footer-link hover:underline">Contact</a>
-                    <a href="#" class="footer-link hover:underline">Terms</a>
+        <footer class="bg-gray-900 text-gray-400 py-10">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; {{ date('Y') }} GrindlY. All rights reserved.</p>
+                <div class="space-x-4 mt-4 md:mt-0 text-sm">
+                    <a href="#" class="hover:text-white">Privacy</a>
+                    <a href="#" class="hover:text-white">Terms</a>
+                    <a href="#" class="hover:text-white">Contact</a>
                 </div>
             </div>
         </footer>

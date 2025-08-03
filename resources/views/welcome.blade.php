@@ -16,65 +16,82 @@
 </head>
 
 <body class="font-sans antialiased bg-white text-gray-900">
+
     <!-- Navbar -->
-    <header class="bg-white shadow-md fixed top-0 inset-x-0 z-50">
-        <div class="container mx-auto flex items-center justify-between px-6 py-4">
+    <header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="/" class="flex items-center space-x-2">
-                <img src="{{ asset('storage/images/grindly-logo.png') }}" alt="GrindlY Logo" class="h-10 w-auto md:h-12 rounded-lg">
-                <span class="text-2xl md:text-3xl font-extrabold text-gray-800 leading-tight">
+                <img src="{{ asset('storage/images/grindly-logo.png') }}" alt="GrindlY Logo" class="h-10 w-auto rounded-lg">
+                <span class="text-2xl md:text-3xl font-extrabold text-gray-900">
                     Grindl<span class="text-indigo-700">Y</span>
                 </span>
             </a>
-            <nav class="space-x-4">
-                <a href="{{ route('register') }}" class="text-gray-700 hover:text-indigo-600 font-medium">Sign Up</a>
-                <a href="{{ route('login') }}" class="text-gray-700 hover:text-indigo-600 font-medium">Sign In</a>
+            <nav class="space-x-4 text-sm font-medium">
+                <a href="{{ route('register') }}" class="text-gray-800 hover:text-indigo-600">Sign Up</a>
+                <a href="{{ route('login') }}" class="text-gray-800 hover:text-indigo-600">Sign In</a>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="pt-32 md:pt-40 pb-24 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1532619187608-e5375cab36c9?auto=format&fit=crop&w=1470&q=80');">
-        <div class="container mx-auto px-6 md:px-12 text-center text-white">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-lg">Your Study, Your Rules.</h1>
-            <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md">
-                Track your learning journey, stay consistent, and gamify your grind. Welcome to <strong>GrindlY</strong> — where productivity meets purpose.
-            </p>
-            <div class="mt-8 space-x-4">
-                <a href="{{ route('register') }}" class="bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200">Get Started</a>
-                <a href="{{ route('login') }}" class="bg-white hover:bg-gray-100 text-indigo-700 font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200">Sign In</a>
+    <section 
+        class="min-h-screen flex items-center bg-cover bg-center text-white relative"
+        style="background-image: url('{{ asset('storage/images/landing.jpg') }}');"
+    >
+        <div class="absolute inset-0 bg-gradient-to-r from-indigo-900/90 via-indigo-800/80 to-indigo-700/80"></div>
+        <div class="relative z-10 container mx-auto px-6 md:px-12">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                    Dominate Your Study Goals with <span class="text-pink-400">GrindlY</span>
+                </h1>
+                <p class="text-lg md:text-xl mb-8 text-gray-100">
+                    Stay consistent. Gamify your grind. Build your legacy — one focused session at a time.
+                </p>
+                <div class="space-x-4">
+                    <a href="{{ route('register') }}" class="bg-white text-indigo-700 font-semibold px-6 py-3 rounded-xl shadow-md hover:bg-gray-100 transition">
+                        Get Started
+                    </a>
+                    <a href="{{ route('login') }}" class="bg-indigo-900/30 border border-white text-white font-semibold px-6 py-3 rounded-xl hover:bg-indigo-900/50 transition">
+                        Sign In
+                    </a>
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- Features Section -->
-    <section class="py-20 bg-gray-100">
-        <div class="container mx-auto px-6 md:px-12 text-center">
-            <h2 class="text-3xl font-bold text-gray-800">Why GrindlY?</h2>
-            <p class="mt-2 text-gray-600 max-w-xl mx-auto">We’re not just another planner — we’re your daily motivator, your guide, and your accountability partner.</p>
-
+    <section class="py-20 bg-white text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-gray-900">Why GrindlY?</h2>
+            <p class="mt-2 text-gray-600 max-w-xl mx-auto">
+                Not just another planner — your motivator, your strategy partner, your edge.
+            </p>
             <div class="mt-12 grid gap-10 sm:grid-cols-2 md:grid-cols-3">
-                <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-gray-50 rounded-xl shadow-sm p-6 hover:shadow-md transition">
                     <h3 class="text-xl font-semibold text-indigo-700">Smart Study Tracking</h3>
-                    <p class="mt-2 text-gray-600">Automatically log your study sessions, review past efforts, and stay focused.</p>
+                    <p class="mt-2 text-gray-600">Automatically log your study sessions, review trends, and stay on track.</p>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-gray-50 rounded-xl shadow-sm p-6 hover:shadow-md transition">
                     <h3 class="text-xl font-semibold text-indigo-700">Gamified Experience</h3>
-                    <p class="mt-2 text-gray-600">Earn XP, track streaks, and level up your learning habits.</p>
+                    <p class="mt-2 text-gray-600">Earn XP, build streaks, and level up your learning lifestyle.</p>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h3 class="text-xl font-semibold text-indigo-700">Intelligent Scheduling</h3>
-                    <p class="mt-2 text-gray-600">GrindlY learns your patterns and helps optimize your grind over time.</p>
+                <div class="bg-gray-50 rounded-xl shadow-sm p-6 hover:shadow-md transition">
+                    <h3 class="text-xl font-semibold text-indigo-700">More to come...</h3>
+                    <p class="mt-2 text-gray-600">The future is bright for GrindlY.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-indigo-700 text-white text-center">
+    <!-- Call-to-Action Section -->
+    <section class="py-20 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-600 text-white text-center">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold">Ready to dominate your learning goals?</h2>
-            <p class="mt-4 text-lg">GrindlY is free to start. Jump in and build momentum today.</p>
-            <a href="{{ route('register') }}" class="mt-6 inline-block bg-white text-indigo-700 px-8 py-3 rounded-lg font-semibold shadow-lg hover:bg-gray-100 transition">Start Grinding</a>
+            <p class="mt-4 text-lg max-w-xl mx-auto">GrindlY is free to start. Join thousands of focused learners and build your streak today.</p>
+            <a href="{{ route('register') }}" class="mt-6 inline-block bg-white text-indigo-700 px-8 py-3 rounded-xl font-semibold shadow-md hover:bg-gray-100 transition">
+                Start Grinding
+            </a>
         </div>
     </section>
 
@@ -82,13 +99,13 @@
     <footer class="bg-gray-900 text-gray-400 py-10">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
             <p>&copy; {{ date('Y') }} GrindlY. All rights reserved.</p>
-            <div class="space-x-4 mt-4 md:mt-0">
+            <div class="space-x-4 mt-4 md:mt-0 text-sm">
                 <a href="#" class="hover:text-white">Privacy</a>
                 <a href="#" class="hover:text-white">Terms</a>
                 <a href="#" class="hover:text-white">Contact</a>
             </div>
         </div>
     </footer>
-</body>
 
+</body>
 </html>

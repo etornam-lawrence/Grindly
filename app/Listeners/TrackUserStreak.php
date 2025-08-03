@@ -24,7 +24,7 @@ class TrackUserStreak
     {
         
         $user = $event->user;
-        $today = Carbon::today();
+        $today = Carbon::now();
         $yesterday = Carbon::yesterday();
         $lastLoginDate = $user->last_login_date;
 
@@ -41,15 +41,22 @@ class TrackUserStreak
         // Check if the last login was yesterday and the user is logging in today
         elseif ($lastLoginDate->isSameDay($yesterday)){
             $user->current_streak += 1;  //Yesterday → increment current_streak
+            $user->longest_streak += 1;
+            $lastLoginDate = Carbon::now();
+            $user->save();
         }
         elseif (!$lastLoginDate->isSameDay($yesterday) && $lastLoginDate->isSameDay($today->copy()->subDays(2))) {
             $user->current_streak = 1; //Two days ago → reset current_streak to 1
+            $user->save();
         } else {
             $user->current_streak = 0; //Any other day → reset current_streak to 0
+            $user->longest_streak;
+            $user->save();
         }
 
         if($user->current_streak > $user->longest_streak){
             $user->longest_streak = $user->current_streak; //Update longest_streak if current_streak is greater
+            
         }
 
         $user->last_login_date = $today; //Update last_login_date to today
