@@ -15,10 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->integer('current_xp')->default(0);
+            $table->integer('current_streak')->default(0);
+            $table->integer('longest_streak')->default(0);
+            $table->dateTime('last_login_date')->nullable();
+            $table->dateTime('streak_start_date')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+        
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

@@ -43,6 +43,33 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'last_login_date' => 'date',
         ];
+    }
+
+
+    /**
+     * Get the notes for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Notes>
+     */
+    public function notes()
+    {
+        return $this->hasMany(Notes::class);
+    }
+
+    /**
+     * Get the study sessions for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\StudySession>
+     */
+    public function sessions()
+    {
+        return $this->hasMany(StudySession::class);
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(ActivityLog::class);
     }
 }
