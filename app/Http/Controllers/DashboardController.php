@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Note;
-use App\Models\Session;
+use App\Models\Notes;
+use App\Models\StudySession;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,4 +24,5 @@ class DashboardController extends Controller
     }
 
     //add yt search functionality
+
 }

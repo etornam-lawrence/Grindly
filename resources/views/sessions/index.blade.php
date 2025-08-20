@@ -11,6 +11,13 @@
                 </p>
             </div>
             <div class="flex items-center">
+                <div id="mailsender">
+                    <a href={{ route('chart.mail') }}>
+                        <x-primary-button >Request Mail</x-primary-button>
+                    </a>
+                </div>
+            </div>
+            <div class="flex items-center">
                 <div id="current-time"
                     class="text-neutral-700 text-sm font-mono px-4 py-2 rounded-xl bg-neutral-100 border border-neutral-200 shadow-inner">
                 </div>

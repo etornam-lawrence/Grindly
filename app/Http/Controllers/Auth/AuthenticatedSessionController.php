@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Support\Carbon;
+use App\Models\User;
+use App\Mail\LoggedInMail;
+use Illuminate\Support\Facades\Mail;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -26,6 +29,9 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
+        $user = Auth::user();
+        Mail::to($user->email)->send( new LoggedInMail($user));
+
 
         $request->session()->regenerate();
         $user = Auth::user();

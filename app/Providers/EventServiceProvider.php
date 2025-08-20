@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
 
     \App\Events\StudySessionCreated::class => [
         \App\Listeners\StudySessionLogs::class,
+    ],
+    \App\Events\StudyStarted::class => [
+        \App\Listeners\StudyMail::class,
     ]
 
     

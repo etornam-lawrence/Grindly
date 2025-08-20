@@ -43,6 +43,7 @@ class StudySessionController extends Controller
 
         event(new StudySessionCreated($session));
 
+
         if (!$session && StudySession::inSession($user)) {
             return redirect()->back()->with('error', 'Failed to create study session.');
         }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\WelcomeMailJob;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -42,6 +43,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+        WelcomeMailJob::dispatch($user->id);
 
         Auth::login($user);
 
